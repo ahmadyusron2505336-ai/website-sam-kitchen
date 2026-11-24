@@ -1,0 +1,7 @@
+/* Latar oranye bergambar topi koki dan peralatan masak.
+   Dipakai bersama oleh halaman pelanggan dan admin. */
+.pattern-food {
+    background-color: #D95D2B;
+    background-size: 180px 180px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180' viewBox='0 0 180 180' fill='none' stroke='white' stroke-opacity='.14' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cg transform='translate(18 20)'%3E%3Cpath d='M12 34a10 10 0 0 1-2-19 12 12 0 0 1 22-5 11 11 0 0 1 12 9 9 9 0 0 1-4 15z'/%3E%3Cpath d='M14 34v8h28v-8'/%3E%3C/g%3E%3Cg transform='translate(106 96) rotate(-18)'%3E%3Cpath d='M12 34a10 10 0 0 1-2-19 12 12 0 0 1 22-5 11 11 0 0 1 12 9 9 9 0 0 1-4 15z'/%3E%3Cpath d='M14 34v8h28v-8'/%3E%3C/g%3E%3Cg transform='translate(110 18)'%3E%3Cpath d='M4 4v14M10 4v14M16 4v14M4 18h12M10 18v28'/%3E%3C/g%3E%3Cg transform='translate(24 104)'%3E%3Cellipse cx='14' cy='10' rx='12' ry='9'/%3E%3Cpath d='M26 10c8 0 8 12 0 12'/%3E%3C/g%3E%3C/svg%3E");
+}
