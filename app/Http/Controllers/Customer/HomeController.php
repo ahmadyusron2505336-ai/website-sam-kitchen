@@ -27,21 +27,14 @@ class HomeController extends Controller
         $avgRating     = $reviewScope()->avg('rating');
         $latestReviews = $reviewScope()->with('product')->whereNotNull('comment')->latest()->limit(3)->get();
 
-        // Status buka atau tutup (WIB)
-        $now = now('Asia/Jakarta');
-        $day = ['minggu', 'senin', 'selasa', 'rabu', 'kamis', 'jumat', 'sabtu'][$now->dayOfWeek];
-        $h   = $store->opening_hours[$day] ?? null;
-
-        $isOpen = false;
-        $todayHours = null;
-        if ($h && ! ($h['closed'] ?? false)) {
-            $todayHours = $h['open'] . ' - ' . $h['close'];
-            $isOpen = $now->format('H:i') >= $h['open'] && $now->format('H:i') <= $h['close'];
-        }
+        // Status toko: tombol Tutup Toko di admin + jam operasional
+        $status         = $store->currentStatus();
+        $isOpen         = $status['open'];
+        $todayHours     = $status['hours'];
 
         return view('customer.home', compact(
             'store', 'categories', 'featured', 'menuCount', 'orderDone',
             'avgRating', 'latestReviews', 'isOpen', 'todayHours'
-        ));
+        ));        
     }
 }

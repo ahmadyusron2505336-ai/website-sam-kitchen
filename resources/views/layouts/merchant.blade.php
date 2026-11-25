@@ -79,7 +79,6 @@
 <body class="font-sans text-cocoa bg-brand">
 @php
     $merchant = auth()->user()->merchant;
-    $open = $merchant?->is_open ?? true;
     $menu = [
         ['merchant.dashboard',     ['merchant.dashboard'],                              'Dashboard',  'fa-chart-pie'],
         ['merchant.products.index',['merchant.products.*', 'merchant.categories.*'],    'Produk',     'fa-utensils'],
@@ -155,20 +154,7 @@
 
             <div class="flex items-center gap-2 sm:gap-4">
             <div class="flex items-center gap-2 sm:gap-4">
-                {{-- Tombol buka/tutup toko --}}
-                <form method="POST" action="{{ route('merchant.store.toggle') }}" class="shrink-0"
-                      @if($open) onsubmit="return confirm('Tutup toko? Pelanggan tidak bisa memesan sampai toko dibuka lagi.')" @endif>
-                    @csrf
-                    <button type="submit" title="{{ $open ? 'Tutup toko' : 'Buka toko' }}"
-                            class="inline-flex items-center gap-1.5 rounded-full border px-3 py-1.5 text-xs font-bold transition
-                                   {{ $open
-                                        ? 'border-red-200 bg-red-50 text-red-600 hover:bg-red-100'
-                                        : 'border-green-200 bg-green-50 text-green-700 hover:bg-green-100' }}">
-                        <i class="fa-solid {{ $open ? 'fa-store-slash' : 'fa-store' }}"></i>
-                        <span class="hidden sm:inline">{{ $open ? 'Tutup Toko' : 'Buka Toko' }}</span>
-                    </button>
-                </form>
-              
+             
                 <a href="{{ route('merchant.orders.index', ['status' => 'menunggu']) }}"
                    class="relative w-9 h-9 flex items-center justify-center" title="Pesanan menunggu">                   
                     <i class="fa-regular fa-bell text-lg"></i>

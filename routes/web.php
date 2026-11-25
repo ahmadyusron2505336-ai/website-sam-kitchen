@@ -61,8 +61,6 @@ Route::prefix('merchant')->name('merchant.')
         ->only(['index', 'store', 'update', 'destroy'])->names('categories');
 
     Route::post('/pesanan/aksi', [OrderController::class, 'bulk'])->name('orders.bulk');
-    Route::post('/toko/status', [\App\Http\Controllers\Merchant\StoreStatusController::class, 'toggle'])
-    ->name('store.toggle');
     Route::get('/pesanan', [OrderController::class, 'index'])->name('orders.index');
     Route::get('/pesanan/feed', [OrderController::class, 'feed'])->name('orders.feed');
     Route::get('/pesanan/{order}', [OrderController::class, 'show'])->name('orders.show');
