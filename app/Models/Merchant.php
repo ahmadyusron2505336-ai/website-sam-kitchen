@@ -14,4 +14,9 @@ class Merchant extends Model
     public function products()   { return $this->hasMany(Product::class); }
     public function orders()     { return $this->hasMany(Order::class); }
     public function commissions(){ return $this->hasMany(Commission::class); }
+    // Toko dianggap buka jika belum ada data toko atau kolom bernilai true
+    public static function isStoreOpen(): bool
+    {
+        return (bool) (static::query()->value('is_open') ?? true);
+    }
 }

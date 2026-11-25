@@ -18,8 +18,14 @@ return Application::configure(basePath: dirname(__DIR__))
         // Pengguna yang sudah login membuka halaman login: langsung ke dashboard
         $middleware->redirectUsersTo(fn (\Illuminate\Http\Request $request) =>
             $request->user()?->role === 'pengelola' ? '/merchant/dashboard' : '/');
-    })
+
+        $middleware->web(append: [
+            \App\Http\Middleware\EnsureStoreOpen::class,
+    ]);
+})
 
     ->withExceptions(function (Exceptions $exceptions): void {
         //
     })->create();
+
+    

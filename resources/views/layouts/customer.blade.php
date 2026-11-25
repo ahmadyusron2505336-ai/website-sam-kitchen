@@ -128,6 +128,21 @@
     </nav>
 </header>
 
+@if(! ($storeOpen ?? true))
+    <div class="bg-red-50 border-b border-red-200 text-red-700 text-sm text-center px-4 py-2.5" role="alert">
+        <i class="fa-solid fa-store-slash"></i>
+        <b>Toko sedang tutup.</b> Pesanan baru belum bisa dibuat. Silakan kembali saat toko buka.
+    </div>
+@endif
+
+@if(session('error'))
+    <div class="max-w-5xl mx-auto px-4 mt-4">
+        <div class="rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700" role="alert">
+            {{ session('error') }}
+        </div>
+    </div>
+@endif
+
 {{-- KONTEN --}}
 <main class="pattern-food min-h-[60vh] py-4 sm:py-6">
     <div class="max-w-6xl mx-auto px-3 sm:px-4 space-y-4">

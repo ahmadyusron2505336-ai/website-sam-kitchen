@@ -88,6 +88,18 @@
     ];
 @endphp
 
+@php
+    $open = auth()->user()->merchant?->is_open ?? true;
+@endphp
+<form method="POST" action="{{ route('merchant.store.toggle') }}"
+      @if($open) onsubmit="return confirm('Tutup toko? Pelanggan tidak bisa memesan sampai toko dibuka lagi.')" @endif>
+    @csrf
+    <button class="btn {{ $open ? 'btn-ghost !text-red-600' : 'btn-brand' }} !py-2 !text-xs">
+        <i class="fa-solid {{ $open ? 'fa-store-slash' : 'fa-store' }}"></i>
+        {{ $open ? 'Tutup Toko' : 'Buka Toko' }}
+    </button>
+</form>
+
 <div id="overlay" class="fixed inset-0 z-30 bg-black/40 hidden lg:hidden"></div>
 
 <div class="lg:flex min-h-screen">

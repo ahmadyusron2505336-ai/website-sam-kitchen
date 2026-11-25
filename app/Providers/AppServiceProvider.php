@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Models\Merchant;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 
@@ -26,6 +27,10 @@ class AppServiceProvider extends ServiceProvider
         $view->with('pendingCount', $merchant
             ? $merchant->orders()->where('status', 'menunggu')->count()
             : 0);
+        });
+
+        View::composer(['layouts.customer', 'customer.*'], function ($view) {
+        $view->with('storeOpen', Merchant::isStoreOpen());
         });
     }
 }

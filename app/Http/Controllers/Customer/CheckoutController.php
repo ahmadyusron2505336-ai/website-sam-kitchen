@@ -50,6 +50,11 @@ class CheckoutController extends Controller
 
     public function store(Request $request)
     {
+        if (! Merchant::isStoreOpen()) {
+            return back()->withInput()->with('error',
+                'Maaf, toko sedang tutup. Pesanan Anda belum dikirim. Silakan coba lagi saat toko buka.');
+        }
+                
         $store   = current_store();
         $methods = $this->methods($store);
 
